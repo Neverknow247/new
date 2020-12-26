@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "New Activity";
+}
+@model Events
+
+<div class="row">
+    <h1>Dojo Activity Center</h1>
+    <div class="row">
+        <p><a href="/home">Home</a> <a href="/logout">Logout</a></p>
+    </div>
+</div>
+<form asp-action="Create" asp-controller="Home" method="POST">
+    <div class="section">
+        <div class="section">
+            <div class="column">
+                <span></span><br>
+                <p><label asp-for="Title"></label></p>
+                <span></span><br>
+                <p><label asp-for="EventStart"></label></p>
+            </div>
+            <div class="column">
+                <span asp-validation-for="Title"></span><br>
+                <p><input asp-for="Title"></p>
+                <span asp-validation-for="EventStart"></span><br>
+                <p><input asp-for="EventStart"></p>
+            </div>
+        </div>
+        <div class="section">
+            <div class="column">
+                <span></span><br>
+                <p><label asp-for="EventLength"></label></p>
+            </div>
+            <div class="column">
+                <span asp-validation-for="EventLength"></span><br>
+                <p><input asp-for="EventLength"></p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="column">
+            <span></span><br>
+            <p><label asp-for="Desc"></label></p>
+        </div>
+        <div class="column">
+            <span asp-validation-for="Desc"></span><br>
+            <p><textarea asp-for="Desc" cols="70" rows="10"></textarea></p>
+            <p><input value="Create Activity" type="submit"></p>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Dojo Activity Center";
+}
+
+@model List<Events>
+<div class="row">
+    <h1>Dojo Activity Center</h1>
+    <div class="row">
+        <p><h5>Welcome, @ViewBag.User.Name!</h5><span></span><a href="logout">Logout</a></p>
+    </div>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>No. of Participants</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (Events i in @Model)
+        {
+            <tr>
+                <td><a href="View/@i.EventId">@i.Title</a></td>
+                <td>@i.EventStart</td>
+                <td>@i.EventLength</td>
+                <td>@i.Planner.Name</td>
+                <td>@i.EventParticipants.Count</td>
+                <td>
+                    @if (ViewBag.User.UserId == i.Planner.UserId)
+                    {
+                        <a href="/Delete/@i.EventId">Delete</a>
+                    }
+                    else
+                    {
+                        if (i.EventParticipants.Any(g => g.UserId == ViewBag.User.UserId))
+                        {
+                            <a href="/Leave/@i.EventId/@ViewBag.User.UserId">Leave</a>
+                        }
+                        else
+                        {
+                            <a href="/Join/@i.EventId/@ViewBag.User.UserId">Join</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="row">
+    <a href="new">Add New Activity</a>
+</div>

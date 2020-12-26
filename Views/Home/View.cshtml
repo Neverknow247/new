@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = $"{ViewBag.Event.Title}";
+}
+
+@model Events
+<div class="row">
+    <h1>Dojo Activity Center</h1>
+    <div class="row">
+        <p><a href="/home">Home</a> <a href="/logout">Logout</a></p>
+    </div>
+</div>
+<div class="row">
+    <h1>@ViewBag.Event.Title</h1>
+
+    <p>
+        @if(ViewBag.User.UserId == ViewBag.Event.Planner.UserId){
+            <a class="btn" href="/Delete/@ViewBag.Event.EventId">Delete</a>
+        }
+        else{
+            if(Model.EventParticipants.Any(i => i.UserId == ViewBag.User.UserId)){
+                <a class="btn" href="/Leave/@ViewBag.Event.EventId/@ViewBag.User.UserId">Leave</a>
+            }
+            else{
+                <a class="btn" href="/Join/@ViewBag.Event.EventId/@ViewBag.User.UserId">Join</a>
+            }
+        }
+    </p>
+</div>
+<div class="row">
+    <div>
+        <h3>Event Coordinator: @ViewBag.Event.Planner.Name</h3>
+        <h3>Description: @ViewBag.Event.Desc</h3>
+        <h3>Participants:</h3>
+        @foreach (Participants i in @Model.EventParticipants)
+        {
+            <p class="center">@i.User.Name</p>
+        }
+    </div>
+</div>

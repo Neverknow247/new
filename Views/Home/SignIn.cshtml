@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Login/Registration";
+}
+
+@model Users
+<div id="header">
+    <center>
+        <h1>Welcome to the Dojo Activity Center</h1>
+    </center>
+</div>
+<div class="content">
+    <form asp-action="Register" asp-asp-controller="Home" method="POST">
+        <div class="section">
+            <div class="column">
+                <span></span><br>
+                <p><label asp-for="Name"></label></p>
+                <span></span><br>
+                <p><label asp-for="Email"></label></p>
+                <span></span><br>
+                <p><label asp-for="Password"></label></p>
+                <span></span><br>
+                <p><label asp-for="Confirm"></label>:</p>
+            </div>
+            <div class="column">
+                <span asp-validation-for="Name"></span><br>
+                <p><input asp-for="Name"></p>
+                <span asp-validation-for="Email"></span><br>
+                <p><input asp-for="Email"></p>
+                <span asp-validation-for="Password"></span><br>
+                <p><input asp-for="Password"></p>
+                <span asp-validation-for="Confirm"></span><br>
+                <p><input asp-for="Confirm"></p>
+                <p><input value="Register" type="submit"></p>
+            </div>
+        </div>
+    </form>
+    <form asp-action="Login" asp-controller="Home" method="POST">
+        <div class="section">
+            <div class="column">
+                <span></span><br>
+                <p><label asp-for="Email"></label></p>
+                <span></span><br>
+                <p><label asp-for="Password"></label></p>
+            </div>
+            <div class="column">
+                <span asp-validation-for="Email"></span><br>
+                <p><input asp-for="Email"></p>
+                <span asp-validation-for="Password"></span><br>
+                <p><input asp-for="Password"></p>
+                <p><input value="Login" type="submit"></p>
+            </div>
+        </div>
+    </form>
+</div>
